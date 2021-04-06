@@ -9,7 +9,7 @@
   <title>BH01 - intermediate</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/HBCU/BH01">
+  <link rel="canonical" href="http://localhost:4000/new_blog/HBCU/BH01">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -226,18 +226,18 @@
 				<div class="post-body">
 					<h1 id="bh01---intermediate">BH01 - intermediate</h1>
 
-<p><img src="/img/HBCU/Clipboard_2020-11-14-13-24-59.png" alt="" /></p>
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-24-59.png" alt="" /></p>
 
 <p>This challenge contains both a binary and a remote service. Lets check what the binary does.
-<img src="/img/HBCU/Clipboard_2020-11-14-13-27-01.png" alt="" />
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-27-01.png" alt="" />
 It requires an input, encrypts that and compares it to the servers input. What does it do under the hood?
 Well this binary is stripped so it does not have a main function, so we look at the entry function to find the main function.
 In this binary the FUN_00100cce is the main function.
-<img src="/img/HBCU/Clipboard_2020-11-14-13-28-32.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-28-32.png" alt="" /></p>
 
 <p>The main function:</p>
 
-<p><img src="/img/HBCU/Clipboard_2020-11-14-13-29-05.png" alt="" /></p>
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-29-05.png" alt="" /></p>
 
 <p>On first inspection it seems a bit obfuscated so lets get started.
 The first thing it does it print the welcome message.
@@ -246,7 +246,7 @@ It then requests user input.</p>
 <p>it then calls srand(time(0)). This part is very important because what it means is that it sets the seed value to the current time in ms. Keep this in mind.</p>
 
 <p>It then calls FUN_00100bca which generates the servers challenge.
-<img src="/img/HBCU/Clipboard_2020-11-14-13-41-59.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-41-59.png" alt="" /></p>
 
 <p>Again it seems a bit obfuscated but lets get started.
 the variable assignment looks like a couple of variables but what it does is assign parts of the variable (this is only done in pseudo code).
@@ -304,7 +304,7 @@ Note: Python and C do not use the same random algorithms so i wrote a little c p
 
 <p>The result:</p>
 
-<p><img src="/img/HBCU/Clipboard_2020-11-14-13-57-35.png" alt="" /></p>
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-57-35.png" alt="" /></p>
 
 <p>Locally it work, great. Except it doesnt work on the remote service.
 Why?
@@ -358,7 +358,7 @@ Flag: revErSiNG-n0tSo-EZ-06
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/HBCU/BH01"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/HBCU/BH01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -366,7 +366,7 @@ Flag: revErSiNG-n0tSo-EZ-06
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BH01%20-%20intermediate&url=/new_blog/HBCU/BH01"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BH01%20-%20intermediate&url=http://localhost:4000/new_blog/HBCU/BH01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -374,7 +374,7 @@ Flag: revErSiNG-n0tSo-EZ-06
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/HBCU/BH01&title=BH01%20-%20intermediate&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/HBCU/BH01&title=BH01%20-%20intermediate&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -415,13 +415,13 @@ Flag: revErSiNG-n0tSo-EZ-06
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>

@@ -9,7 +9,7 @@
   <title>CovidLock Ransomware Analysis</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/covidlock/">
+  <link rel="canonical" href="http://localhost:4000/new_blog/covidlock/">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -231,7 +231,7 @@
 <p>The app that I chose was CovidLock, hosted at https://coronavirusapp.site. Because the domain itself was not up anymore I reached out to security researchers and received a sample.</p>
 
 <p>CovidLock disguises itself as a coronavirus tracker, it would show you real-time coronavirus outbreaks. What it actually does is execute a lock-screen attack. That means that it will change the lock screen information and display a ransomware message.
-<img src="/img/covidlock/Clipboard_2021-01-15-09-39-42.png" alt="" /></p>
+<img src="/new_blog/img/covidlock/Clipboard_2021-01-15-09-39-42.png" alt="" /></p>
 
 <h1 id="apk-analysis">APK analysis</h1>
 <p>The 2 most used tools to analyze Android applications are:<br />
@@ -246,7 +246,7 @@
 
 <p>The first thing I looked at is the Android Manifest. The manifest file describes essential information about your app to the Android build tools, the Android operating system, and Google Play. Among many other things, the manifest file is required to declare the following: The app’s package name, which usually matches your code’s namespace. The most important part of this file is the android permissions.</p>
 
-<p><img src="/img/covidlock/Clipboard_2021-01-15-09-29-59.png" alt="" /></p>
+<p><img src="/new_blog/img/covidlock/Clipboard_2021-01-15-09-29-59.png" alt="" /></p>
 
 <p>From these permissions we can see a couple of important permissions for malware:<br />
 <strong>RECEIVE_BOOT_COMPLETED</strong>: Allows an application to receive the Intent.  ACTION_BOOT_COMPLETED that is broadcast after the system finishes booting.</p>
@@ -272,7 +272,7 @@ YOU HAVE 48 HOURS
 <p>So the author wants 347,20 euro to release the ransomware hold on the phone.</p>
 
 <p>The next important part is the function verifyPin. 
-<img src="/img/covidlock/Clipboard_2021-01-15-09-29-00.png" alt="" /></p>
+<img src="/new_blog/img/covidlock/Clipboard_2021-01-15-09-29-00.png" alt="" /></p>
 
 <p>As we can see there is no real obfuscation and we can see what it does.
 It gets the input of the secretPin textbox and compares if the string is equal to 4865083501.</p>
@@ -295,7 +295,7 @@ It gets the input of the secretPin textbox and compares if the string is equal t
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/covidlock/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/covidlock/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -303,7 +303,7 @@ It gets the input of the secretPin textbox and compares if the string is equal t
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=CovidLock%20Ransomware%20Analysis&url=/new_blog/covidlock/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=CovidLock%20Ransomware%20Analysis&url=http://localhost:4000/new_blog/covidlock/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -311,7 +311,7 @@ It gets the input of the secretPin textbox and compares if the string is equal t
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/covidlock/&title=CovidLock%20Ransomware%20Analysis&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/covidlock/&title=CovidLock%20Ransomware%20Analysis&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -328,6 +328,11 @@ It gets the input of the secretPin textbox and compares if the string is equal t
 						<h2 class="post-nav-title">Hack the box: Multimaster</h2>
 					</a>
 					 
+					<a href="/new_blog/test-encrypt/" class="next">
+						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
+						<h2 class="post-nav-title">test page</h2>
+					</a>
+					
 				</div>
 
 			</div>
@@ -340,6 +345,17 @@ It gets the input of the secretPin textbox and compares if the string is equal t
   
   <div class="widget widget-recent">
     <h3 class="widget-title">Recent Posts</h3>
+    
+    <div class="recent-posts">
+      
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/new_blog/test-encrypt/">test page</a></h6>
+        <div class="recent-date">
+          <time datetime="2021-04-05T09:05:55+02:00">April 5, 2021</time>
+        </div>
+      </div>
+    </div>
     
     <div class="recent-posts">
       
@@ -383,20 +399,6 @@ It gets the input of the secretPin textbox and compares if the string is equal t
       </div>
     </div>
     
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/new_blog/HBCU/" style="background-image: url(/new_blog/img//HBCU/HBCU.png)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/new_blog/HBCU/">HBCU Fall Classic - A SANS Cyber Range</a></h6>
-        <div class="recent-date">
-          <time datetime="2020-11-08T08:05:55+01:00">November 8, 2020</time>
-        </div>
-      </div>
-    </div>
-    
   </div>
   
 
@@ -417,13 +419,13 @@ It gets the input of the secretPin textbox and compares if the string is equal t
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>

@@ -9,7 +9,7 @@
   <title>FM01 - beginner</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/HBCU/FM01">
+  <link rel="canonical" href="http://localhost:4000/new_blog/HBCU/FM01">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -228,15 +228,15 @@
 
 <p>This forensics challenge contained a single file with binary data.
 I investigated it with xxd and found strings that where commonly found in elf files.
-<img src="/img/HBCU/Clipboard_2020-11-16-15-38-56.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-15-38-56.png" alt="" /></p>
 
 <p>So i inspected the header and did not find any elf headers.
-<img src="/img/HBCU/Clipboard_2020-11-16-15-39-13.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-15-39-13.png" alt="" /></p>
 
 <p>With hexeditor i edited the header bytes and added the ELF magic bytes.
 <code class="language-plaintext highlighter-rouge">hexeditor -b file</code>
 The resulting header:
-<img src="/img/HBCU/Clipboard_2020-11-16-15-39-29.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-15-39-29.png" alt="" /></p>
 
 <p>Now i ran the binary and it printed the flag.
 Flag: headersAreImportANT91-91</p>
@@ -245,7 +245,7 @@ Flag: headersAreImportANT91-91</p>
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/HBCU/FM01"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/HBCU/FM01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -253,7 +253,7 @@ Flag: headersAreImportANT91-91</p>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=FM01%20-%20beginner&url=/new_blog/HBCU/FM01"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=FM01%20-%20beginner&url=http://localhost:4000/new_blog/HBCU/FM01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -261,7 +261,7 @@ Flag: headersAreImportANT91-91</p>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/HBCU/FM01&title=FM01%20-%20beginner&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/HBCU/FM01&title=FM01%20-%20beginner&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -302,13 +302,13 @@ Flag: headersAreImportANT91-91</p>
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>

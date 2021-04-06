@@ -9,7 +9,7 @@
   <title>BE01 - intermediate</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/HBCU/BE01">
+  <link rel="canonical" href="http://localhost:4000/new_blog/HBCU/BE01">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -226,16 +226,18 @@
 				<div class="post-body">
 					<h1 id="be01---intermediate">BE01 - intermediate</h1>
 
-<p><img src="/img/HBCU/Clipboard_2020-11-14-13-11-43.png" alt="" /></p>
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-11-43.png" alt="" /></p>
 
 <p>This challenge contains one binary. Lets see what it does:
-<img src="/img/HBCU/Clipboard_2020-11-14-13-12-50.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-12-50.png" alt="" /></p>
 
 <p>Ofcourse my initial guess was wrong, so i ran it with ltrace which intercepts and records dynamic library calls.
 As you can see it caught all the libc functions (puts, printf, fgets,strcmp)
-<img src="@attachment/Clipboard_2020-11-18-09-54-58.png" alt="" />
-It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngThisOnE!</code> with my input so that should be the password.
-<img src="/img/HBCU/Clipboard_2020-11-14-13-13-26.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-18-09-54-58.png" alt="" /></p>
+
+<p>It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngThisOnE!</code> with my input so that should be the password.</p>
+
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-14-13-13-26.png" alt="" /></p>
 
 <p>Flag: beTYouDiDnTGuESS-0017</p>
 
@@ -243,7 +245,7 @@ It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngT
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/HBCU/BE01"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/HBCU/BE01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -251,7 +253,7 @@ It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngT
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BE01%20-%20intermediate&url=/new_blog/HBCU/BE01"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BE01%20-%20intermediate&url=http://localhost:4000/new_blog/HBCU/BE01"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -259,7 +261,7 @@ It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngT
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/HBCU/BE01&title=BE01%20-%20intermediate&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/HBCU/BE01&title=BE01%20-%20intermediate&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -300,13 +302,13 @@ It compared <code class="language-plaintext highlighter-rouge">goodLuCKGuessIngT
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>

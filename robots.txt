@@ -1,1 +1,1 @@
-Sitemap: /new_blog/sitemap.xml
+Sitemap: http://localhost:4000/new_blog/sitemap.xml

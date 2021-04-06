@@ -9,7 +9,7 @@
   <title>BM02 - intermediate</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/HBCU/BM02">
+  <link rel="canonical" href="http://localhost:4000/new_blog/HBCU/BM02">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -225,17 +225,17 @@
 
 				<div class="post-body">
 					<h1 id="bm02---intermediate">BM02 - intermediate</h1>
-<p><img src="/img/HBCU/Clipboard_2020-11-16-12-01-10.png" alt="" /></p>
+<p><img src="/new_blog/img/HBCU/Clipboard_2020-11-16-12-01-10.png" alt="" /></p>
 
 <p>This challenge contained one binary that prints “Not that easy.” when ran, so lets take a look under the hood with ghidra.
-<img src="/img/HBCU/Clipboard_2020-11-16-12-00-55.png" alt="" />
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-12-00-55.png" alt="" />
 The main function does not seem to do much except printing the Not that easy. 
 But if you look at the assembly itself you see two compare statements, and if they are not zero it will jump to the puts statement.
-<img src="/img/HBCU/Clipboard_2020-11-16-12-12-22.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-12-12-22.png" alt="" /></p>
 
 <p>Because the value is always set to 0x539 the decompiled code knows that the other part cannot be called and does not create pseudo c code for it.
 To fix this i will patch the jnz statement to not do anything at all. The way i will do that is with Radare2.
-<img src="/img/HBCU/Clipboard_2020-11-16-12-36-50.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-12-36-50.png" alt="" /></p>
 
 <p>If you look at the opcode before the jnz you see “0f 85 4d 01 00 00”. this means that we need to change the 6 opcode bytes with something that the binary understands as No OPeration (nop).</p>
 
@@ -251,7 +251,7 @@ To fix this i will patch the jnz statement to not do anything at all. The way i 
 </ul>
 
 <p>Now we can run the program again and get the flag.
-<img src="/img/HBCU/Clipboard_2020-11-16-12-36-59.png" alt="" /></p>
+<img src="/new_blog/img/HBCU/Clipboard_2020-11-16-12-36-59.png" alt="" /></p>
 
 <p>Flag: n1CePatCHiNG010189</p>
 
@@ -259,7 +259,7 @@ To fix this i will patch the jnz statement to not do anything at all. The way i 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/HBCU/BM02"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/HBCU/BM02"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -267,7 +267,7 @@ To fix this i will patch the jnz statement to not do anything at all. The way i 
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BM02%20-%20intermediate&url=/new_blog/HBCU/BM02"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=BM02%20-%20intermediate&url=http://localhost:4000/new_blog/HBCU/BM02"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -275,7 +275,7 @@ To fix this i will patch the jnz statement to not do anything at all. The way i 
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/HBCU/BM02&title=BM02%20-%20intermediate&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/HBCU/BM02&title=BM02%20-%20intermediate&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -316,13 +316,13 @@ To fix this i will patch the jnz statement to not do anything at all. The way i 
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>

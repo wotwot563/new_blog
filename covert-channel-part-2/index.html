@@ -9,7 +9,7 @@
   <title>Overt and Covert channels Part 2</title>
   <meta name='description' content='This blog is a means to share my research.'>
 
-  <link rel="canonical" href="/new_blog/covert-channel-part-2/">
+  <link rel="canonical" href="http://localhost:4000/new_blog/covert-channel-part-2/">
   <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
@@ -240,7 +240,7 @@ Wireshark shows the bits/bytes mapped to what value so we are going to use that.
 <code class="language-plaintext highlighter-rouge">dig upsecurity.com @localhost</code></p>
 
 <p>Which generates this packet:
-<img src="/img/covert-channel/part-2/Clipboard_2020-10-28-15-44-39.png" alt="" /></p>
+<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-15-44-39.png" alt="" /></p>
 
 <p>Because we dont need the additional records we leave that part out.</p>
 
@@ -493,22 +493,22 @@ payload.upsecurity.com</p>
 </code></pre></div></div>
 
 <p>Now if we look at terminal 1 we see the response:
-<img src="/img/covert-channel/part-2/Clipboard_2020-10-28-16-04-19.png" alt="" /></p>
+<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-04-19.png" alt="" /></p>
 
 <p>And if we look at Wireshark we can see the following requests that went over the network:
-<img src="/img/covert-channel/part-2/Clipboard_2020-10-28-16-05-19.png" alt="" /></p>
+<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-05-19.png" alt="" /></p>
 
 <p>Wireshark marked it as a valid packet and if you would get a lot of packets then this can be missed. Ofcourse wintered security specialists will not fall for this but for that we can play with timing or the transaction id or something. This will take longer but will be more stealthy.</p>
 
 <p>Just to make sure wireshark marks invalid packets as malformed I sent random information over port 53 and you can see that it couldn’t decently parse it:
-<img src="/img/covert-channel/part-2/Clipboard_2020-10-28-16-07-57.png" alt="" /></p>
+<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-07-57.png" alt="" /></p>
 
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/new_blog/covert-channel-part-2/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/covert-channel-part-2/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -516,7 +516,7 @@ payload.upsecurity.com</p>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Overt%20and%20Covert%20channels%20Part%202&url=/new_blog/covert-channel-part-2/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Overt%20and%20Covert%20channels%20Part%202&url=http://localhost:4000/new_blog/covert-channel-part-2/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -524,7 +524,7 @@ payload.upsecurity.com</p>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/new_blog/covert-channel-part-2/&title=Overt%20and%20Covert%20channels%20Part%202&summary=&source=What's%20upsecurity"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/covert-channel-part-2/&title=Overt%20and%20Covert%20channels%20Part%202&summary=&source=What's%20upsecurity"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -558,6 +558,17 @@ payload.upsecurity.com</p>
   
   <div class="widget widget-recent">
     <h3 class="widget-title">Recent Posts</h3>
+    
+    <div class="recent-posts">
+      
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/new_blog/test-encrypt/">test page</a></h6>
+        <div class="recent-date">
+          <time datetime="2021-04-05T09:05:55+02:00">April 5, 2021</time>
+        </div>
+      </div>
+    </div>
     
     <div class="recent-posts">
       
@@ -601,20 +612,6 @@ payload.upsecurity.com</p>
       </div>
     </div>
     
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/new_blog/HBCU/" style="background-image: url(/new_blog/img//HBCU/HBCU.png)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/new_blog/HBCU/">HBCU Fall Classic - A SANS Cyber Range</a></h6>
-        <div class="recent-date">
-          <time datetime="2020-11-08T08:05:55+01:00">November 8, 2020</time>
-        </div>
-      </div>
-    </div>
-    
   </div>
   
 
@@ -635,13 +632,13 @@ payload.upsecurity.com</p>
 
       
       <li class="social-profiles-item">
-        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/discord.ico"></i></a>
+        <a href="wotwot#5016" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/discord.ico"></i></a>
       </li>
       
 
       
       <li class="social-profiles-item">
-        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/img/Icons/ctftime.png"></i></a>
+        <a href="https://ctftime.org/user/77238" class="social-profiles-link"><i class="ion"><img style="height:16px; width: 16px" src="/new_blog/img/Icons/ctftime.png"></i></a>
       </li>
       
     </ul>
