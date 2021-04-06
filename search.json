@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "test page linux",
+      "category" : "",
+      "tags"     : "encrypted text",
+      "url"      : "/new_blog/test-encrypt/",
+      "date"     : "2021-04-05 09:01:55 +0200"
+    } ,
+  
+    {
+      "title"    : "test page windows",
+      "category" : "",
+      "tags"     : "encrypted text",
+      "url"      : "/new_blog/test-encrypt-windows/",
+      "date"     : "2021-04-04 09:05:55 +0200"
+    } ,
+  
+    {
       "title"    : "CovidLock Ransomware Analysis",
       "category" : "",
       "tags"     : "Android Malware",
