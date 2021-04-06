@@ -1,0 +1,187 @@
+[
+  
+    {
+      "title"    : "CovidLock Ransomware Analysis",
+      "category" : "",
+      "tags"     : "Android Malware",
+      "url"      : "/new_blog/covidlock/",
+      "date"     : "2020-12-08 08:05:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Multimaster",
+      "category" : "",
+      "tags"     : "HackTheBox and Windows",
+      "url"      : "/new_blog/Multimaster/",
+      "date"     : "2020-11-20 20:25:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Dyplesher",
+      "category" : "",
+      "tags"     : "HackTheBox and Linux",
+      "url"      : "/new_blog/Dyplesher/",
+      "date"     : "2020-11-17 20:25:55 +0100"
+    } ,
+  
+    {
+      "title"    : "HBCU Fall Classic - A SANS Cyber Range",
+      "category" : "",
+      "tags"     : "HBCU",
+      "url"      : "/new_blog/HBCU/",
+      "date"     : "2020-11-08 08:05:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 8: Info leak &amp; Poison null byte",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-8/",
+      "date"     : "2020-11-08 08:05:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Overt and Covert channels Part 2",
+      "category" : "",
+      "tags"     : "Covert Channel",
+      "url"      : "/new_blog/covert-channel-part-2/",
+      "date"     : "2020-10-29 16:05:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Overt and Covert channels Part 1",
+      "category" : "",
+      "tags"     : "Covert Channel",
+      "url"      : "/new_blog/covert-channel-part-1/",
+      "date"     : "2020-10-28 16:05:55 +0100"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 7: Unsafe unlink",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-7/",
+      "date"     : "2020-10-14 09:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 5: House of Spirit",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-5/",
+      "date"     : "2020-10-08 09:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 4: Fastbin dup",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-4/",
+      "date"     : "2020-09-28 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 3: House of force",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-3/",
+      "date"     : "2020-09-28 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 2: Intro into Malloc",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-2/",
+      "date"     : "2020-09-28 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Heap exploiting 1: Intro into Heap exploitation.",
+      "category" : "",
+      "tags"     : "Heap exploiting",
+      "url"      : "/new_blog/heap-exploiting-1/",
+      "date"     : "2020-09-28 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Laser",
+      "category" : "",
+      "tags"     : "HackTheBox and Linux",
+      "url"      : "/new_blog/laser/",
+      "date"     : "2020-09-22 21:25:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Lockpicking T pins",
+      "category" : "",
+      "tags"     : "Lockpicking",
+      "url"      : "/new_blog/lockpicking-part-4/",
+      "date"     : "2020-09-11 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Lockpicking Serrated pins",
+      "category" : "",
+      "tags"     : "Lockpicking",
+      "url"      : "/new_blog/lockpicking-part-3/",
+      "date"     : "2020-09-11 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Lockpicking basic pins",
+      "category" : "",
+      "tags"     : "Lockpicking",
+      "url"      : "/new_blog/lockpicking-part-2/",
+      "date"     : "2020-09-07 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Lockpicking a basic lock",
+      "category" : "",
+      "tags"     : "Lockpicking",
+      "url"      : "/new_blog/lockpicking-part-1/",
+      "date"     : "2020-09-07 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Passage",
+      "category" : "",
+      "tags"     : "HackTheBox and Linux",
+      "url"      : "/new_blog/passage/",
+      "date"     : "2020-09-06 21:25:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Feline",
+      "category" : "",
+      "tags"     : "HackTheBox and Linux",
+      "url"      : "/new_blog/feline/",
+      "date"     : "2020-09-05 21:25:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Remote",
+      "category" : "",
+      "tags"     : "HackTheBox and Windows",
+      "url"      : "/new_blog/hack-the-box-remote/",
+      "date"     : "2020-09-01 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Hack the box: Admirer",
+      "category" : "",
+      "tags"     : "HackTheBox and Windows",
+      "url"      : "/new_blog/hack-the-box-adminer/",
+      "date"     : "2020-09-01 17:05:55 +0200"
+    } ,
+  
+    {
+      "title"    : "Retrieve the Administrator hash",
+      "category" : "",
+      "tags"     : "Windows",
+      "url"      : "/new_blog/extract-administrator-hash/",
+      "date"     : "2020-09-01 17:05:55 +0200"
+    } 
+  
+]
